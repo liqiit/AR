@@ -1,6 +1,8 @@
 // getting places from APIs
 function loadPlaces(position) {
-    const endpoint = `https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
+    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+
+    const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
     return fetch({
         url: endpoint,
         headers: {
