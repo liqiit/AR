@@ -10,6 +10,7 @@
     <script>
         THREEx.ArToolkitContext.baseURL = 'https://raw.githack.com/jeromeetienne/ar.js/master/three.js/'
     </script>
+    <script src="./script.js"></script>
 </head>
 
 <body style='margin: 0; overflow: hidden;'>
@@ -18,6 +19,6 @@
 		embedded
         arjs='sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960;debugUIEnabled: false;'>
         <a-entity gltf-model="./assets/magnemite/scene.gltf"rotation="0 180 0" scale="0.00000000000000015 0.00000000000000015 0.00000000000000015"  gps-entity-place="longitude: 116.407394; latitude: 39.904202;" animation-mixer/>
-        <a-camera gps-camera rotation-reader></a-camera>
+        <a-camera gps-camera rotation-reader gps-camera="minDistance: 40;"></a-camera>
 	</a-scene>
 </body>
