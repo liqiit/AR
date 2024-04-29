@@ -3,8 +3,8 @@ function loadPlaces(position) {
     const corsProxy = 'https://cors-anywhere.herokuapp.com/';
 
     const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
-    return fetch({
-        url: endpoint,
+    return fetch(endpoint,{
+
         headers: {
             "Accept": "application/json",
             "Authorization": "fsq3Xd8yruhR+Efq1YHJP4dR3s78qmDxvKkJQDUzMxfqWj8="
