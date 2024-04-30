@@ -1,25 +1,5 @@
 // getting places from APIs
 function loadPlaces(position) {
-    // const corsProxy = 'https://cors-anywhere.herokuapp.com/';
-    //
-    // const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
-    // return fetch(endpoint,{
-    //     method:'GET',
-    //     headers: new Headers({
-    //         Accept: 'application/json',
-    //         Authorization: "fsq3Xd8yruhR+Efq1YHJP4dR3s78qmDxvKkJQDUzMxfqWj8=",
-    //     })
-    // })
-    //     .then((res) => {
-    //         return res.json()
-    //             .then((resp) => {
-    //                 console.log(res)
-    //                 return resp.response.venues;
-    //             })
-    //     })
-    //     .catch((err) => {
-    //         console.error('Error with places API', err);
-    //     })
     const options = {
         method: 'GET',
         headers: {
@@ -30,7 +10,10 @@ function loadPlaces(position) {
 
     fetch(`https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`, options)
         .then(response => response.json())
-        .then(response => console.log(response))
+        .then(response =>{
+             console.log(response)
+            return response;
+        })
         .catch(err => console.error(err));
 };
 
@@ -41,8 +24,8 @@ window.onload = () => {
          loadPlaces(position.coords)
                 .then((places) => {
                     places.forEach((place) => {
-                        const latitude = place.location.lat;
-                        const longitude = place.location.lng;
+                        const latitude = place.geocodes.main.latitude;
+                        const longitude = place.geocodes.main.longitude;
 
                         // add place name
                         const placeText = document.createElement('a-link');
