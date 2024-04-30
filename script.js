@@ -21,9 +21,10 @@ function loadPlaces(position) {
                         const longitude = place.geocodes.main.longitude;
                         const placeText = document.createElement('a-link');
                         placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+                        placeText.setAttribute(' backgroundColor','blue')
                         placeText.setAttribute('title', place.name);
                         placeText.setAttribute('titleColor','black')
-                        placeText.setAttribute('scale', '15 15 15');
+                        placeText.setAttribute('scale', '50 50 50');
                         placeText.addEventListener('loaded', () => {
                             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
                         });
@@ -33,8 +34,10 @@ function loadPlaces(position) {
                 });
                 const tempText = document.createElement('a-link');
                 tempText.setAttribute('gps-entity-place', `latitude: 45.8234; longitude: -119.7257;`);
+                tempText.setAttribute(' backgroundColor','blue')
                 tempText.setAttribute('title', '新荟城');
-                tempText.setAttribute('scale', '15 15 15');
+                tempText.setAttribute('titleColor','black')
+                tempText.setAttribute('scale', '50 50 50');
                 tempText.addEventListener('loaded', () => {
                     window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
                 });
