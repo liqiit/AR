@@ -4,7 +4,7 @@ function loadPlaces(position) {
 
     const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
     return fetch(endpoint,{
-
+        method:'GET',
         headers: {
             "Accept": "application/json",
             "Authorization": "fsq3Xd8yruhR+Efq1YHJP4dR3s78qmDxvKkJQDUzMxfqWj8="
