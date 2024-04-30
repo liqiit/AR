@@ -9,10 +9,11 @@ function loadPlaces(position) {
     };
 
     fetch(`https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`, options)
-        .then(response => response.json())
-        .then(response =>{
-             console.log(response)
-            return response;
+        .then(response => {
+            console.log(response)
+            response.json().then((resp) => {
+                return resp.result;
+            })
         })
         .catch(err => console.error(err));
 };
