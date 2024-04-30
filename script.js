@@ -22,6 +22,7 @@ function loadPlaces(position) {
                         const placeText = document.createElement('a-link');
                         placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
                         placeText.setAttribute('title', place.name);
+                        placeText.setAttribute('titleColor','black')
                         placeText.setAttribute('scale', '15 15 15');
                         placeText.addEventListener('loaded', () => {
                             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
@@ -48,7 +49,6 @@ window.onload = () => {
 
     return navigator.geolocation.getCurrentPosition(async function (position) {
             await loadPlaces(position.coords)
-
         },
         (err) => console.error('Error in retrieving position', err),
         {
