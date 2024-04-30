@@ -1,25 +1,37 @@
 // getting places from APIs
 function loadPlaces(position) {
-    const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+    // const corsProxy = 'https://cors-anywhere.herokuapp.com/';
+    //
+    // const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
+    // return fetch(endpoint,{
+    //     method:'GET',
+    //     headers: new Headers({
+    //         Accept: 'application/json',
+    //         Authorization: "fsq3Xd8yruhR+Efq1YHJP4dR3s78qmDxvKkJQDUzMxfqWj8=",
+    //     })
+    // })
+    //     .then((res) => {
+    //         return res.json()
+    //             .then((resp) => {
+    //                 console.log(res)
+    //                 return resp.response.venues;
+    //             })
+    //     })
+    //     .catch((err) => {
+    //         console.error('Error with places API', err);
+    //     })
+    const options = {
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: 'fsq3/1mSuY0oIt/DqWKGoLKWxrHeIPD8oHDo1BZmGhl7yBs='
+        }
+    };
 
-    const endpoint = `${corsProxy}https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`;
-    return fetch(endpoint,{
-        method:'GET',
-        headers: new Headers({
-            Accept: 'application/json',
-            Authorization: "fsq3Xd8yruhR+Efq1YHJP4dR3s78qmDxvKkJQDUzMxfqWj8=",
-        })
-    })
-        .then((res) => {
-            return res.json()
-                .then((resp) => {
-                    console.log(res)
-                    return resp.response.venues;
-                })
-        })
-        .catch((err) => {
-            console.error('Error with places API', err);
-        })
+    fetch('https://api.foursquare.com/v3/places/search', options)
+        .then(response => response.json())
+        .then(response => console.log(response))
+        .catch(err => console.error(err));
 };
 
 
