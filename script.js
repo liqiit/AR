@@ -22,26 +22,27 @@ function loadPlaces(position) {
 window.onload = () => {
     const scene = document.querySelector('a-scene');
     return navigator.geolocation.getCurrentPosition(function (position) {
-         const places=loadPlaces(position.coords)
-         if(places){
-              places.forEach((place) => {
-                const latitude = place.geocodes.main.latitude;
-                const longitude = place.geocodes.main.longitude;
+            const places = loadPlaces(position.coords)
+            if (places) {
+                places.forEach((place) => {
+                    console.log("place:" + JSON.stringify(place))
+                    const latitude = place.geocodes.main.latitude;
+                    const longitude = place.geocodes.main.longitude;
 
-                // add place name
-                const placeText = document.createElement('a-link');
-                placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
-                placeText.setAttribute('title', place.name);
-                placeText.setAttribute('scale', '15 15 15');
+                    // add place name
+                    const placeText = document.createElement('a-link');
+                    placeText.setAttribute('gps-entity-place', `latitude: ${latitude}; longitude: ${longitude};`);
+                    placeText.setAttribute('title', place.name);
+                    placeText.setAttribute('scale', '15 15 15');
 
-                placeText.addEventListener('loaded', () => {
-                    window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+                    placeText.addEventListener('loaded', () => {
+                        window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+                    });
+
+                    scene.appendChild(placeText);
                 });
+            }
 
-                scene.appendChild(placeText);
-            });
-         }
-        
         },
         (err) => console.error('Error in retrieving position', err),
         {
