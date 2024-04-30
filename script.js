@@ -22,9 +22,8 @@ function loadPlaces(position) {
 window.onload = () => {
     const scene = document.querySelector('a-scene');
     return navigator.geolocation.getCurrentPosition(function (position) {
-         loadPlaces(position.coords)
-                .then((places) => {
-                    places.forEach((place) => {
+         const places=await loadPlaces(position.coords)
+         places.forEach((place) => {
                         const latitude = place.geocodes.main.latitude;
                         const longitude = place.geocodes.main.longitude;
 
@@ -40,7 +39,6 @@ window.onload = () => {
 
                         scene.appendChild(placeText);
                     });
-                })
         },
         (err) => console.error('Error in retrieving position', err),
         {
