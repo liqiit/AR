@@ -26,11 +26,18 @@ function loadPlaces(position) {
                         placeText.addEventListener('loaded', () => {
                             window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
                         });
-
                         scene.appendChild(placeText);
                     }
 
                 });
+                const tempText = document.createElement('a-link');
+                tempText.setAttribute('gps-entity-place', `latitude: 45.8234; longitude: -119.7257;`);
+                tempText.setAttribute('title', '新荟城');
+                tempText.setAttribute('scale', '15 15 15');
+                tempText.addEventListener('loaded', () => {
+                    window.dispatchEvent(new CustomEvent('gps-entity-place-loaded'))
+                });
+                scene.appendChild(tempText);
             })
         })
         .catch(err => console.error(err));
