@@ -15,8 +15,8 @@ function loadPlaces(position) {
                 const places = resp.results;
                 console.log("places:" + places)
                 places.forEach((place) => {
-                    console.log("place:" + JSON.stringify(place))
                     if(place.geocodes.main){
+                        console.log("place:" + JSON.stringify(place))
                         const latitude = place.geocodes.main.latitude;
                         const longitude = place.geocodes.main.longitude;
                         const placeText = document.createElement('a-link');
