@@ -1,5 +1,5 @@
 // getting places from APIs
-function loadPlaces(position) {
+function  loadPlaces(position) {
     const options = {
         method: 'GET',
         headers: {
@@ -21,8 +21,8 @@ function loadPlaces(position) {
 
 window.onload = () => {
     const scene = document.querySelector('a-scene');
-    return navigator.geolocation.getCurrentPosition(function (position) {
-            const places = loadPlaces(position.coords)
+    return navigator.geolocation.getCurrentPosition(async function (position) {
+            const places = await loadPlaces(position.coords)
             if (places) {
                 places.forEach((place) => {
                     console.log("place:" + JSON.stringify(place))
