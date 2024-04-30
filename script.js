@@ -12,7 +12,7 @@ function loadPlaces(position) {
         .then(response => {
             console.log(response)
             response.json().then((resp) => {
-                return resp.result;
+                return resp.results;
             })
         })
         .catch(err => console.error(err));
