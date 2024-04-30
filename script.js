@@ -1,5 +1,5 @@
 // getting places from APIs
-function  loadPlaces(position) {
+function loadPlaces(position) {
     const options = {
         method: 'GET',
         headers: {
@@ -7,23 +7,13 @@ function  loadPlaces(position) {
             Authorization: 'fsq3/1mSuY0oIt/DqWKGoLKWxrHeIPD8oHDo1BZmGhl7yBs='
         }
     };
-
+    const scene = document.querySelector('a-scene');
     fetch(`https://api.foursquare.com/v3/places/nearby?ll=${position.latitude},${position.longitude}&limit=30`, options)
         .then(response => {
             console.log(response)
             response.json().then((resp) => {
-                return resp.results;
-            })
-        })
-        .catch(err => console.error(err));
-};
-
-
-window.onload = () => {
-    const scene = document.querySelector('a-scene');
-    return navigator.geolocation.getCurrentPosition(async function (position) {
-            const places = await loadPlaces(position.coords)
-            if (places) {
+                const places = resp.results;
+                console.log("places:" + places)
                 places.forEach((place) => {
                     console.log("place:" + JSON.stringify(place))
                     const latitude = place.geocodes.main.latitude;
@@ -41,7 +31,16 @@ window.onload = () => {
 
                     scene.appendChild(placeText);
                 });
-            }
+            })
+        })
+        .catch(err => console.error(err));
+};
+
+
+window.onload = () => {
+
+    return navigator.geolocation.getCurrentPosition(async function (position) {
+            await loadPlaces(position.coords)
 
         },
         (err) => console.error('Error in retrieving position', err),
